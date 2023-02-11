@@ -46,7 +46,29 @@ export class TodoRepository {
         return taskDataParsed.todoList;
     }
 
-    updateTask() {
+    async updateTask(task: Task) {
+
+        const filePath = path.join(__dirname, '../entities/todo.entity.json');
+        const taskData = await fs.readFile(filePath, { encoding: 'utf-8' }); // procession...
+        const taskDataParsed: TaskList = JSON.parse(taskData);
+
+        let newArray: Task[] = [];
+        taskDataParsed.todoList.forEach((item) => {
+            if(item.task_id !== task.task_id) {
+                newArray.push(item)
+            }
+        })
+        taskDataParsed.todoList = newArray;
+
+        taskDataParsed.todoList.push(task);
+
+        await fs.writeFile(filePath, JSON.stringify(taskDataParsed, null, 2));
         
+        return taskDataParsed.todoList;
+
+
+
+
+
     }
 }
