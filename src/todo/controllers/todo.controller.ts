@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Delete, Put, Body } from "@nestjs/common";
+import { Controller, Get, Post, Delete, Put, Body, Param } from "@nestjs/common";
 import { TodoRepository } from "../repository/todo.repository";
 import { Task } from "../utils/interfaces/task.interface";
 
-@Controller('task')
+@Controller('/task')
 export class TodoController {
     
     constructor(
@@ -15,14 +15,16 @@ export class TodoController {
         return this.todoRepository.addTask(task);
     }
 
-    @Get()
-    getTasks() {
-        return this.todoRepository.getTasks();
+    @Get() // finished
+    async getTasks() {
+        const taskData = await this.todoRepository.getTasks();
+        return taskData;
     }
 
-    @Delete()
-    deleteTask() {
-        
+    @Delete(':id')
+    deleteTask(@Param() param) {
+        console.log(param)
+        return this.todoRepository.deleteTask(param.id);
     }
 
     @Put()
