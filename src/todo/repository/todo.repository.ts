@@ -63,12 +63,8 @@ export class TodoRepository {
         taskDataParsed.todoList.push(task);
 
         await fs.writeFile(filePath, JSON.stringify(taskDataParsed, null, 2));
-        
+
         return taskDataParsed.todoList;
-
-
-
-
 
     }
 }

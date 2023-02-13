@@ -21,14 +21,14 @@ export class TodoController {
         return taskData;
     }
 
-    @Delete(':id')
+    @Delete(':id')  //finished
     deleteTask(@Param() param) {
         console.log(param)
         return this.todoRepository.deleteTask(param.id);
     }
 
-    @Put()
-    updateTask() {
-        
+    @Put() //finished
+    updateTask( @Body() task:Task) {
+        return this.todoRepository.updateTask(task);
     }
 }
