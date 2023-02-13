@@ -41,7 +41,6 @@ export class TodoRepository {
         })
         taskDataParsed.todoList = newArray;
 
-        await fs.writeFile(filePath, JSON.stringify(taskDataParsed, null, 2));
 
         return taskDataParsed.todoList;
     }
@@ -53,11 +52,13 @@ export class TodoRepository {
         const taskDataParsed: TaskList = JSON.parse(taskData);
 
         let newArray: Task[] = [];
+
         taskDataParsed.todoList.forEach((item) => {
             if(item.task_id !== task.task_id) {
                 newArray.push(item)
             }
         })
+        
         taskDataParsed.todoList = newArray;
 
         taskDataParsed.todoList.push(task);
