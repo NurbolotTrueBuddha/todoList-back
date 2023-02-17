@@ -15,6 +15,7 @@ export class TodoController {
     addTask(@Body() task: AddTaskDto) {
         return this.todoRepository.addTask(task);
     }
+    
 
     @Get() // finished
     async getTasks() {
@@ -22,14 +23,17 @@ export class TodoController {
         return taskData;
     }
 
+
     @Delete(':id')  //finished
     deleteTask(@Param() param) {
         console.log(param)
         return this.todoRepository.deleteTask(param.id);
     }
 
+
     @Put() //finished
     updateTask( @Body() task:Task) {
         return this.todoRepository.updateTask(task);
     }
+
 }
