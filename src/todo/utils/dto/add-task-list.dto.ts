@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AddTaskDto {
+export class AddTaskListDto {
     @ApiProperty()
     task_text: string;
 
