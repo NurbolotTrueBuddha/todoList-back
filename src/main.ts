@@ -11,7 +11,7 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
-
+  
   const config = new DocumentBuilder()
   .setTitle('Cats example')
   .setDescription('The cats API description')

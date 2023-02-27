@@ -2,8 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class AddTaskDto {
     @ApiProperty()
-    task_text: string;
-
+    order: string;
     @ApiProperty()
-    task_id: number;
+    task_text: string;
 }

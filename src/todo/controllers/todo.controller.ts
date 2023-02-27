@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Delete, Put, Body, Param, Query, Headers } from "@nestjs/common";
-import { TodoRepository } from "../repository/todo.repository";
+import { TaskRepository } from "../repository/task.repository";
 import { AddTaskDto } from "../utils/dto/add-task.dto";
 import { AddTaskListDto } from "../utils/dto/add-task-list.dto";
 import { DeleteTaskDto } from "../utils/dto/delete-task.dto";
@@ -10,7 +10,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 export class TodoController {
     
     constructor(
-        private todoRepository: TodoRepository,
+        private taskRepository: TaskRepository,
     ){}
 
 
@@ -20,7 +20,7 @@ export class TodoController {
     })
     @Post()
     addTask(@Body() task: AddTaskDto) {
-        return this.todoRepository.addTask(task);
+        return this.taskRepository.addTask(task);
     }
     
 
@@ -30,7 +30,7 @@ export class TodoController {
     })
     @Get()
     async getTasks() {
-        const taskData = await this.todoRepository.getTasks();
+        const taskData = await this.taskRepository.getTasks();
         return taskData;
     }
 
@@ -41,8 +41,8 @@ export class TodoController {
     })
     @Delete(':id')
     deleteTask(@Param() param: DeleteTaskDto) {
-        console.log(param)
-        return this.todoRepository.deleteTask(param.id);
+
+        return this.taskRepository.deleteTask(param.id);
     }
 
 
@@ -52,7 +52,7 @@ export class TodoController {
     })
     @Put()
     updateTask( @Body() task: AddTaskDto) {
-        return this.todoRepository.updateTask(task);
+        return this.taskRepository.updateTask(task);
     }
 
 }
